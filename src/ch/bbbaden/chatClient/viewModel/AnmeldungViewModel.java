@@ -57,22 +57,19 @@ public class AnmeldungViewModel extends ViewModel {
         this.model = model;
     }
 
-    public void saveAction() {
+    public void proveUser() {
 
-        if (userName.getValue() != null) {
-
-            for (int i = 0; i < users.size(); i++) {
-                if (users.get(i).getBenutzerName().equals(userName.getValue())) {
-                    if (users.get(i).getPassword().equals(password.getValue())) {
-                        mainApp.showNachrichten();
-                    }
-
-                }
-            }
+        int ret = model.proveUser(new User(password.getValue(), userName.getValue()));
+        if (ret == 0) {
+            mainApp.showNachrichten();
+        } else if (ret == -1) {
             errorMessage.setValue("Benutzername oder Passwort ist Falsch!");
-        } else {
+        } else if (ret == -2) {
             errorMessage.setValue("Bitte geben Sie den Benutzernamen ein!");
+        } else {
+            errorMessage.setValue("");
         }
+
     }
 
     public void chancelAction() {

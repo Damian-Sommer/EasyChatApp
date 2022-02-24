@@ -48,4 +48,24 @@ public class MockModel implements NachrichtModel, UserModel {
         users.add(user);
     }
 
+    @Override
+    public int proveUser(User user) {
+        if (user.getBenutzerName() != null) {
+
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getBenutzerName().equals(user.getBenutzerName())) {
+                    if (users.get(i).getPassword().equals(user.getPassword())) {
+                        return 0;
+                    }
+
+                }
+            }
+            return -1;
+            //errorMessage.setValue("Benutzername oder Passwort ist Falsch!");
+        }else{
+            return -2;
+        }
+        
+    }
+
 }

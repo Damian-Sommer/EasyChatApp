@@ -3,7 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/da_so/Documents/Informatik/M120/8001_Projekt/ChatClient%20v3/EasyChatApp/src/ch/bbbaden/chatClient/MainApp.java</file>
+            <file>file:/C:/Users/da_so/Documents/GitHub/EasyChatApp/src/ch/bbbaden/chatClient/model/VolatileModel.java</file>
+            <file>file:/C:/Users/da_so/Documents/GitHub/EasyChatApp/src/ch/bbbaden/chatClient/viewModel/AnmeldungViewModel.java</file>
         </group>
     </open-files>
 </project-private>

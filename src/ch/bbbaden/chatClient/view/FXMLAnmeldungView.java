@@ -63,7 +63,7 @@ public class FXMLAnmeldungView implements Initializable {
 
     @FXML
     void loginAction(ActionEvent event) {
-        viewModel.saveAction();
+        viewModel.proveUser();
     }
 
     @FXML

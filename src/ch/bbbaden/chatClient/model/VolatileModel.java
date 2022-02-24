@@ -17,7 +17,7 @@ import java.util.List;
 public class VolatileModel extends Model implements NachrichtModel, UserModel {
 
     private final List<Nachricht> nachrichten;
-    private final List<User> users;
+    private final List<User> users = new ArrayList();
 
     public VolatileModel() {
 
@@ -47,14 +47,15 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         nachrichten.add(n12);
         nachrichten.add(n11);
         nachrichten.add(n13);
-        
+
 
         //User-Liste
         User u1 = new User("1234", "Damian");
 
-        users = new ArrayList<>();
 
         users.add(u1);
+        
+        System.out.println("hallo");
 
     }
 
@@ -82,4 +83,40 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         changes.firePropertyChange("users", oldUsers, users);
     }
 
+    /*
+    @Override
+    public void proveUser(User user) {
+        if (user.getBenutzerName() != null) {
+
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getBenutzerName().equals(user.getBenutzerName())) {
+                    if (users.get(i).getPassword().equals(user.getPassword())) {
+                        mainApp.showNachrichten();
+                    }
+
+                }
+            }
+            changes.firePropertyChange("errorMessage", "", "Benutzername oder Passwort ist Falsch!");
+        } else {
+            changes.firePropertyChange("errorMessage", "", "Bitte geben Sie den Benutzernamen ein!");
+        }
+    }
+     */
+    @Override
+    public int proveUser(User user) {
+        if (user.getBenutzerName() != null) {
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getBenutzerName().equals(user.getBenutzerName())) {
+                    if (users.get(i).getPassword().equals(user.getPassword())) {
+                        return 0;
+                    }
+
+                }
+            }
+            return -1;
+        } else {
+            return -2;
+        }
+
+    }
 }

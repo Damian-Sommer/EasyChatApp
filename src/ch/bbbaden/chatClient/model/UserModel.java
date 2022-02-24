@@ -22,4 +22,6 @@ public interface UserModel {
     public abstract List<User> getUser();
 
     public abstract void addUser(User user);
+    
+    public abstract int proveUser(User user);
 }
