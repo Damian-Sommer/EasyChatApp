@@ -36,6 +36,9 @@ public class FXMLAnmeldungView implements Initializable {
     @FXML // fx:id="btnEinloggen"
     private Button btnEinloggen; // Value injected by FXMLLoader
 
+    @FXML
+    private Button btnCreateNewUser;
+
     @FXML // fx:id="txtUsername"
     private TextField txtUsername; // Value injected by FXMLLoader
 
@@ -49,6 +52,8 @@ public class FXMLAnmeldungView implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         errorLabel.wrapTextProperty().set(true);
 
+        errorLabel.setText("");
+        
         assert btnAbbrechen != null : "fx:id=\"btnAbbrechen\" was not injected: check your FXML file 'FXMLAnmeldung.fxml'.";
         assert btnEinloggen != null : "fx:id=\"btnEinloggen\" was not injected: check your FXML file 'FXMLAnmeldung.fxml'.";
         assert txtUsername != null : "fx:id=\"txtUsername\" was not injected: check your FXML file 'FXMLAnmeldung.fxml'.";
@@ -71,6 +76,11 @@ public class FXMLAnmeldungView implements Initializable {
         viewModel.chancelAction();
     }
 
+     @FXML
+    void createNewUser(ActionEvent event) {
+        viewModel.createNewUser();
+    }
+    
     public void setViewModel(AnmeldungViewModel viewModel) {
         this.viewModel = viewModel;
     }

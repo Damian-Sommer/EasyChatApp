@@ -20,13 +20,18 @@
     -fx-font-size: 15;
 }
 
-
+/*
 #txtUsername{
     -fx-background-radius: 25;
     -fx-border-radius: 25;
     -fx-background-color: #CDD8FF;
 }
 #txtPassword{
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-background-color: #CDD8FF;
+}*/
+.text-field{
     -fx-background-radius: 25;
     -fx-border-radius: 25;
     -fx-background-color: #CDD8FF;

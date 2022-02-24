@@ -48,14 +48,10 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         nachrichten.add(n11);
         nachrichten.add(n13);
 
-
         //User-Liste
         User u1 = new User("1234", "Damian");
 
-
         users.add(u1);
-        
-        System.out.println("hallo");
 
     }
 
@@ -83,40 +79,46 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         changes.firePropertyChange("users", oldUsers, users);
     }
 
-    /*
-    @Override
-    public void proveUser(User user) {
-        if (user.getBenutzerName() != null) {
-
-            for (int i = 0; i < users.size(); i++) {
-                if (users.get(i).getBenutzerName().equals(user.getBenutzerName())) {
-                    if (users.get(i).getPassword().equals(user.getPassword())) {
-                        mainApp.showNachrichten();
-                    }
-
-                }
-            }
-            changes.firePropertyChange("errorMessage", "", "Benutzername oder Passwort ist Falsch!");
-        } else {
-            changes.firePropertyChange("errorMessage", "", "Bitte geben Sie den Benutzernamen ein!");
-        }
-    }
-     */
     @Override
     public int proveUser(User user) {
         if (user.getBenutzerName() != null) {
             for (int i = 0; i < users.size(); i++) {
                 if (users.get(i).getBenutzerName().equals(user.getBenutzerName())) {
-                    if (users.get(i).getPassword().equals(user.getPassword())) {
+                    if (users.get(i).getPassword() == null && user.getPassword() == null) {
+                        return 0;
+                    } else if (users.get(i).getPassword().equals(user.getPassword())) {
                         return 0;
                     }
-
                 }
             }
             return -1;
-        } else {
-            return -2;
         }
+        return -2;
+    }
+
+    @Override
+    public int createNewUser(String username, String password, String passwordRepeat) {
+
+        if (username != null) {
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getBenutzerName().equals(username)) {
+                    return -1;
+                }
+            }
+            if ((password == null && passwordRepeat == null)) {
+                addUser(new User(password, username));
+                return 0;
+            } else if (!password.equals(passwordRepeat)) {
+                return -2;
+            } else {
+                addUser(new User(password, username));
+                return 0;
+
+            }
+        }
+        return -3;
 
     }
+
+    
 }

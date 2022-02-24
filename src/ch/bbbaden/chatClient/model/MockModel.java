@@ -62,10 +62,32 @@ public class MockModel implements NachrichtModel, UserModel {
             }
             return -1;
             //errorMessage.setValue("Benutzername oder Passwort ist Falsch!");
-        }else{
+        } else {
             return -2;
         }
-        
+
+    }
+
+    @Override
+    public int createNewUser(String username, String password, String passwordRepeat) {
+        if (username != null) {
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getBenutzerName().equals(username)) {
+                    return -1;
+                }
+            }
+            if ((password == null && passwordRepeat == null)) {
+                addUser(new User(password, username));
+                return 0;
+            } else if (!password.equals(passwordRepeat)) {
+                return -2;
+            } else {
+                addUser(new User(password, username));
+                return 0;
+
+            }
+        }
+        return -3;
     }
 
 }

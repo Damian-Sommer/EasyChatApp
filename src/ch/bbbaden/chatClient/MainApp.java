@@ -8,11 +8,13 @@ package ch.bbbaden.chatClient;
 import ch.bbbaden.chatClient.model.NachrichtModel;
 import ch.bbbaden.chatClient.model.UserModel;
 import ch.bbbaden.chatClient.model.VolatileModel;
+import ch.bbbaden.chatClient.view.CreateNewUserFormView;
 import ch.bbbaden.chatClient.view.FXMLAnmeldungView;
 import ch.bbbaden.chatClient.view.FXMLChatClientView;
 import ch.bbbaden.chatClient.view.NachrichtFormView;
 import ch.bbbaden.chatClient.viewModel.AnmeldungViewModel;
 import ch.bbbaden.chatClient.viewModel.ChatClientViewModel;
+import ch.bbbaden.chatClient.viewModel.CreateNewUserViewModel;
 import ch.bbbaden.chatClient.viewModel.NachrichtFormViewModel;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -43,7 +45,7 @@ public class MainApp extends Application {
         nachrichtModel = model;
         userModel = model;
         showAnmeldungForm();
-        
+
     }
 
     /**
@@ -117,6 +119,30 @@ public class MainApp extends Application {
             stage.setMinWidth(600);
             stage.setScene(scene);
             stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void showCreateNewUserForm() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("view/CreateNewUserForm.fxml"));
+            Parent root;
+
+            root = loader.load();
+
+            CreateNewUserFormView formView = loader.getController();
+            CreateNewUserViewModel viewModel = new CreateNewUserViewModel(userModel);
+            viewModel.setMainApp(this);
+            formView.setViewModel(viewModel);
+            formView.bind();
+            Scene scene = new Scene(root);
+
+            scene.getStylesheets().add(css);
+            stage.setMinWidth(600);
+            stage.setScene(scene);
+            stage.show();
+
         } catch (IOException ex) {
             Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
         }

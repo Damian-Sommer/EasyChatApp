@@ -5,6 +5,8 @@
  */
 package ch.bbbaden.chatClient.entity;
 
+import java.util.List;
+
 /**
  *
  * @author da_so

@@ -5,6 +5,7 @@
  */
 package ch.bbbaden.chatClient.model;
 
+import ch.bbbaden.chatClient.entity.Nachricht;
 import ch.bbbaden.chatClient.entity.User;
 import java.beans.PropertyChangeListener;
 import java.util.List;
@@ -24,4 +25,7 @@ public interface UserModel {
     public abstract void addUser(User user);
     
     public abstract int proveUser(User user);
+
+    public abstract int createNewUser(String username, String password, String passwordRepeat);
+    
 }
