@@ -44,8 +44,8 @@ public class MainApp extends Application {
         VolatileModel model = new VolatileModel();
         nachrichtModel = model;
         userModel = model;
-        showAnmeldungForm();
-
+        //showAnmeldungForm();
+        showNachrichtenForm();
     }
 
     /**
@@ -95,6 +95,7 @@ public class MainApp extends Application {
             scene.getStylesheets().add(css);
             stage.setMinWidth(600);
             stage.setScene(scene);
+            
             stage.show();
 
         } catch (IOException ex) {
