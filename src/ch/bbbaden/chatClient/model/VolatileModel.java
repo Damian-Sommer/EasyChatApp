@@ -17,44 +17,21 @@ import javafx.concurrent.Task;
  */
 public class VolatileModel extends Model implements NachrichtModel, UserModel {
 
-    private final List<Nachricht> nachrichten;
     private final List<User> users = new ArrayList();
 
     public VolatileModel() {
 
         //Nachrichten-Liste
-        Nachricht n1 = new Nachricht("hallo zusammen");
-        Nachricht n2 = new Nachricht("hallo du");
-        Nachricht n3 = new Nachricht("hallo");
-        Nachricht n4 = new Nachricht("ha");
-        Nachricht n5 = new Nachricht("ha");
-        Nachricht n6 = new Nachricht("h");
-        Nachricht n7 = new Nachricht("a");
-        Nachricht n8 = new Nachricht("l");
-        Nachricht n9 = new Nachricht("l");
-        Nachricht n11 = new Nachricht("0");
-        Nachricht n12 = new Nachricht("h");
-        Nachricht n13 = new Nachricht("a");
-        nachrichten = new ArrayList<>();
-        nachrichten.add(n1);
-        nachrichten.add(n2);
-        nachrichten.add(n3);
-        nachrichten.add(n4);
-        nachrichten.add(n5);
-        nachrichten.add(n6);
-        nachrichten.add(n7);
-        nachrichten.add(n8);
-        nachrichten.add(n9);
-        nachrichten.add(n12);
-        nachrichten.add(n11);
-        nachrichten.add(n13);
+        
+        
 
         //User-Liste
         User u1 = new User("1234", "Damian");
 
         u1.addNachricht(new Nachricht("hallo"));
-        System.out.println(u1.getNachrichten().size());
-        System.out.println(u1.getNachrichten().get(0).getMessage());
+        
+        User u2 = new User(null, "root");
+        users.add(u2);
         // u1.setNachrichten(nachrichten);
         //u1.addNachricht(n13);
         users.add(u1);
@@ -147,7 +124,14 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
     }
 
     @Override
-    public void addNachricht(Nachricht nachricht, User user) {
+    public void addNachricht(Nachricht nachricht, User user, String username, Boolean usingUsername) {
+        if(usingUsername)
+        {
+            for(User userSending : users){
+            if(userSending.getBenutzerName().equals(username)){
+                userSending.addNachricht(nachricht);
+            }}
+        }
         List<Nachricht> oldNachricht = user.getNachrichten();
         user.addNachricht(nachricht);
         changes.firePropertyChange("nachrichten", oldNachricht, user.getNachrichten());

@@ -12,8 +12,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class NachrichtFormView implements Initializable {
 
@@ -31,6 +33,12 @@ public class NachrichtFormView implements Initializable {
     @FXML // fx:id="txtInput"
     private TextArea txtInput; // Value injected by FXMLLoader
 
+    @FXML
+    private TextField txtUsername;
+    
+    @FXML
+    private CheckBox checkBox;
+    
     @FXML // fx:id="labelError"
     private Label labelError; // Value injected by FXMLLoader
 
@@ -48,6 +56,8 @@ public class NachrichtFormView implements Initializable {
     public void bind() {
         txtInput.textProperty().bindBidirectional(viewModel.getMessage());
         labelError.textProperty().bind(viewModel.getErrorMessage());
+        txtUsername.textProperty().bindBidirectional(viewModel.getUsername());
+        checkBox.selectedProperty().bindBidirectional(viewModel.getUsingUsername());
     }
 
     @FXML

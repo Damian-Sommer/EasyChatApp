@@ -7,7 +7,6 @@ package ch.bbbaden.chatClient.viewModel;
 
 import ch.bbbaden.chatClient.entity.User;
 import ch.bbbaden.chatClient.model.UserModel;
-import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 

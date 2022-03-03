@@ -93,8 +93,9 @@ public class MockModel implements NachrichtModel, UserModel {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+
     @Override
-    public void addNachricht(Nachricht nachricht, User user) {
+    public void addNachricht(Nachricht nachricht, User user, String value, Boolean value0) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

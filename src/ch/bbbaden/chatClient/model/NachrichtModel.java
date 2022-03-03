@@ -22,7 +22,8 @@ public interface NachrichtModel {
 
     public abstract List<Nachricht> getAllNachrichten(User user);
 
-    public abstract void addNachricht(Nachricht nachricht, User user);
+
+    public void addNachricht(Nachricht nachricht, User user, String value, Boolean value0);
     
     
 
