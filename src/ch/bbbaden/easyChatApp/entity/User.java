@@ -5,10 +5,8 @@
  */
 package ch.bbbaden.easyChatApp.entity;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.concurrent.Task;
 
 /**
  *

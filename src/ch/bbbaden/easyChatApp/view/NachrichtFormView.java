@@ -4,13 +4,11 @@
 package ch.bbbaden.easyChatApp.view;
 
 import ch.bbbaden.easyChatApp.viewModel.NachrichtFormViewModel;
-import ch.bbbaden.easyChatApp.viewModel.ViewModel;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;

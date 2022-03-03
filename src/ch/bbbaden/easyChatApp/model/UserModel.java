@@ -5,7 +5,6 @@
  */
 package ch.bbbaden.easyChatApp.model;
 
-import ch.bbbaden.easyChatApp.entity.Nachricht;
 import ch.bbbaden.easyChatApp.entity.User;
 import java.beans.PropertyChangeListener;
 import java.util.List;

@@ -9,7 +9,6 @@ import ch.bbbaden.easyChatApp.entity.Nachricht;
 import ch.bbbaden.easyChatApp.entity.User;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.concurrent.Task;
 
 /**
  *

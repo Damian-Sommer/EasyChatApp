@@ -9,7 +9,6 @@ import ch.bbbaden.easyChatApp.entity.Nachricht;
 import ch.bbbaden.easyChatApp.entity.User;
 import ch.bbbaden.easyChatApp.model.NachrichtModel;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
