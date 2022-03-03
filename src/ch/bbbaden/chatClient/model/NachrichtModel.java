@@ -6,6 +6,7 @@
 package ch.bbbaden.chatClient.model;
 
 import ch.bbbaden.chatClient.entity.Nachricht;
+import ch.bbbaden.chatClient.entity.User;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
@@ -19,8 +20,10 @@ public interface NachrichtModel {
 
     public void removePropertyChangeListener(PropertyChangeListener listener);
 
-    public abstract List<Nachricht> getNachricht();
+    public abstract List<Nachricht> getAllNachrichten(User user);
 
-    public abstract void addNachricht(Nachricht nachricht);
+    public abstract void addNachricht(Nachricht nachricht, User user);
+    
+    
 
 }

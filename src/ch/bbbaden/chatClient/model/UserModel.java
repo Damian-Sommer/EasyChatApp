@@ -21,11 +21,13 @@ public interface UserModel {
     public void removePropertyChangeListener(PropertyChangeListener listener);
 
     public abstract List<User> getUser();
+    
+    public abstract int getRightUser(String username, String password);
 
     public abstract void addUser(User user);
     
     public abstract int proveUser(User user);
 
     public abstract int createNewUser(String username, String password, String passwordRepeat);
-    
+        
 }

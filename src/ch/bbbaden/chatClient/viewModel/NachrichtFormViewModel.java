@@ -6,6 +6,7 @@
 package ch.bbbaden.chatClient.viewModel;
 
 import ch.bbbaden.chatClient.entity.Nachricht;
+import ch.bbbaden.chatClient.entity.User;
 import ch.bbbaden.chatClient.model.NachrichtModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -20,8 +21,11 @@ public class NachrichtFormViewModel extends ViewModel {
     private final StringProperty errorMessage = new SimpleStringProperty();
     private NachrichtModel model;
 
-    public NachrichtFormViewModel(NachrichtModel model) {
+    private final User user;
+    
+    public NachrichtFormViewModel(NachrichtModel model, User user) {
         this.model = model;
+        this.user = user;
     }
 
     public StringProperty getMessage() {
@@ -45,13 +49,13 @@ public class NachrichtFormViewModel extends ViewModel {
         if (message.getValue() == null) {
             errorMessage.setValue(String.format("Bitte geben sie mindestens %d Buchstaben ein!", 1));
         } else {
-            model.addNachricht(new Nachricht(message.getValue()));
+            model.addNachricht(new Nachricht(message.getValue()), user);
         }
-        mainApp.showNachrichten();
+        mainApp.showNachrichten(user);
     }
 
     public void chancelAction() {
-        mainApp.showNachrichten();
+        mainApp.showNachrichten(user);
     }
 
     public StringProperty getErrorMessage() {

@@ -9,6 +9,7 @@ import ch.bbbaden.chatClient.entity.Nachricht;
 import ch.bbbaden.chatClient.entity.User;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.concurrent.Task;
 
 /**
  *
@@ -51,14 +52,15 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         //User-Liste
         User u1 = new User("1234", "Damian");
 
+        u1.addNachricht(new Nachricht("hallo"));
+        System.out.println(u1.getNachrichten().size());
+        System.out.println(u1.getNachrichten().get(0).getMessage());
+        // u1.setNachrichten(nachrichten);
+        //u1.addNachricht(n13);
         users.add(u1);
-
     }
 
-    @Override
-    public List<Nachricht> getNachricht() {
-        return nachrichten;
-    }
+    /*
 
     @Override
     public void addNachricht(Nachricht nachricht) {
@@ -66,7 +68,7 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         nachrichten.add(nachricht);
         changes.firePropertyChange("nachrichten", oldNachrichten, nachrichten);
     }
-
+     */
     @Override
     public List<User> getUser() {
         return users;
@@ -118,7 +120,37 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         }
         return -3;
 
+    }/*
+    public void addNachricht(User user, Nachricht nachricht){
+        List<Nachricht> oldNachricht = user.getNachrichten();
+        user.addNachricht(nachricht);
+        changes.firePropertyChange("nachrichten", oldNachricht, user.getNachrichten());
+    }*/
+
+    @Override
+    public List<Nachricht> getAllNachrichten(User user) {
+        return user.getNachrichten();
     }
 
-    
+    @Override
+    public int getRightUser(String username, String password) {
+        for (User user : users) {
+            if (user.getBenutzerName().equals(username)) {
+                if (user.getPassword() == null && password == null) {
+                    return users.indexOf(user);
+                } else if (user.getPassword().equals(password)) {
+                    return users.indexOf(user);
+                }
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public void addNachricht(Nachricht nachricht, User user) {
+        List<Nachricht> oldNachricht = user.getNachrichten();
+        user.addNachricht(nachricht);
+        changes.firePropertyChange("nachrichten", oldNachricht, user.getNachrichten());
+    }
+
 }

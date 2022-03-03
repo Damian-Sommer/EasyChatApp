@@ -28,15 +28,8 @@ public class MockModel implements NachrichtModel, UserModel {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
     }
 
-    @Override
-    public List<Nachricht> getNachricht() {
-        return nachrichten;
-    }
+    
 
-    @Override
-    public void addNachricht(Nachricht nachricht) {
-        nachrichten.add(nachricht);
-    }
 
     @Override
     public List<User> getUser() {
@@ -88,6 +81,21 @@ public class MockModel implements NachrichtModel, UserModel {
             }
         }
         return -3;
+    }
+
+    @Override
+    public List<Nachricht> getAllNachrichten(User user) {
+        return null;
+    }
+
+    @Override
+    public int getRightUser(String username, String password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addNachricht(Nachricht nachricht, User user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

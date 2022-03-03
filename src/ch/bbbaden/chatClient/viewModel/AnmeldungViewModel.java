@@ -7,8 +7,6 @@ package ch.bbbaden.chatClient.viewModel;
 
 import ch.bbbaden.chatClient.entity.User;
 import ch.bbbaden.chatClient.model.UserModel;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.List;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -24,13 +22,9 @@ public class AnmeldungViewModel extends ViewModel {
 
     private final StringProperty errorMessage = new SimpleStringProperty();
     private UserModel model;
-    private final List<User> users;
 
     public AnmeldungViewModel(UserModel model) {
-
         this.model = model;
-        users = model.getUser();
-
     }
 
     public StringProperty getPassword() {
@@ -61,7 +55,13 @@ public class AnmeldungViewModel extends ViewModel {
 
         int ret = model.proveUser(new User(password.getValue(), userName.getValue()));
         if (ret == 0) {
-            mainApp.showNachrichten();
+            //User selectedUser = new User(password.getValue(), userName.getValue());
+            int index = model.getRightUser(userName.getValue(), password.getValue());
+            if (index >= 0) {
+                User user = model.getUser().get(index);
+                mainApp.showNachrichten(user);
+            }
+            errorMessage.setValue("Benutzername oder Passwort ist Falsch!");
         } else if (ret == -1) {
             errorMessage.setValue("Benutzername oder Passwort ist Falsch!");
         } else if (ret == -2) {

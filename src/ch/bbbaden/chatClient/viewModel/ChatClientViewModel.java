@@ -6,6 +6,7 @@
 package ch.bbbaden.chatClient.viewModel;
 
 import ch.bbbaden.chatClient.entity.Nachricht;
+import ch.bbbaden.chatClient.entity.User;
 import ch.bbbaden.chatClient.model.NachrichtModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -24,11 +25,15 @@ public class ChatClientViewModel extends ViewModel implements PropertyChangeList
     private final StringProperty neueNachricht = new SimpleStringProperty();
 
     private Nachricht nachricht;
+    private final User user;
     private NachrichtModel model;
 
-    public ChatClientViewModel(NachrichtModel model) {
-        this.model = model;
-        this.nachrichten.addAll(model.getNachricht());
+    public ChatClientViewModel(NachrichtModel model, User user) {
+        this.model = model;/*
+        this.nachrichten.addAll(model.getNachricht());*/
+        this.user = user;
+        //System.out.println(model.getAllNachrichten(user).get(0).getMessage());
+        this.nachrichten.addAll(model.getAllNachrichten(user));
     }
 
     public ObservableList<Nachricht> getNachricht() {
@@ -44,14 +49,14 @@ public class ChatClientViewModel extends ViewModel implements PropertyChangeList
     }
 
     public void addNachricht() {
-        mainApp.showNachrichtenForm();
+        mainApp.showNachrichtenForm(user);
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
             case "nachrichten":
-                this.nachrichten.setAll(model.getNachricht());
+                this.nachrichten.setAll(model.getAllNachrichten(user));
             default:
         }
     }

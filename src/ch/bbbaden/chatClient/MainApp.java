@@ -5,6 +5,7 @@
  */
 package ch.bbbaden.chatClient;
 
+import ch.bbbaden.chatClient.entity.User;
 import ch.bbbaden.chatClient.model.NachrichtModel;
 import ch.bbbaden.chatClient.model.UserModel;
 import ch.bbbaden.chatClient.model.VolatileModel;
@@ -44,8 +45,7 @@ public class MainApp extends Application {
         VolatileModel model = new VolatileModel();
         nachrichtModel = model;
         userModel = model;
-        //showAnmeldungForm();
-        showNachrichtenForm();
+        showAnmeldungForm();
     }
 
     /**
@@ -55,14 +55,14 @@ public class MainApp extends Application {
         launch(args);
     }
 
-    public void showNachrichten() {
+    public void showNachrichten(User user) {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("view/FXMLChatClient.fxml"));
             Parent root;
             root = loader.load();
             FXMLChatClientView clientView = loader.getController();
-            ChatClientViewModel viewModel = new ChatClientViewModel(nachrichtModel);
+            ChatClientViewModel viewModel = new ChatClientViewModel(nachrichtModel,user);
             viewModel.setMainApp(this);
             nachrichtModel.addPropertyChangeListener(viewModel);
             clientView.setViewModel(viewModel);
@@ -78,7 +78,7 @@ public class MainApp extends Application {
 
     }
 
-    public void showNachrichtenForm() {
+    public void showNachrichtenForm(User user) {
 
         try {
 
@@ -86,7 +86,7 @@ public class MainApp extends Application {
             Parent root;
             root = loader.load();
             NachrichtFormView formView = loader.getController();
-            NachrichtFormViewModel viewModel = new NachrichtFormViewModel(nachrichtModel);
+            NachrichtFormViewModel viewModel = new NachrichtFormViewModel(nachrichtModel, user);
             viewModel.setMainApp(this);
             formView.setViewModel(viewModel);
             formView.bind();
