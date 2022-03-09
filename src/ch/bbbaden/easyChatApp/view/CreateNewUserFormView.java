@@ -81,9 +81,9 @@ public class CreateNewUserFormView implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         errorLabel.wrapTextProperty().set(true);
-        
+
         errorLabel.setText("");
-        
+
         assert btnAbbrechen != null : "fx:id=\"btnAbbrechen\" was not injected: check your FXML file 'CreateNewUserForm.fxml'.";
         assert btnErstellen != null : "fx:id=\"btnErstellen\" was not injected: check your FXML file 'CreateNewUserForm.fxml'.";
         assert txtUsername != null : "fx:id=\"txtUsername\" was not injected: check your FXML file 'CreateNewUserForm.fxml'.";

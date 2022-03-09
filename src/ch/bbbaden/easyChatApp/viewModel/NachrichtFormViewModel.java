@@ -53,7 +53,6 @@ public class NachrichtFormViewModel extends ViewModel {
         if (message.getValue() == null) {
             errorMessage.setValue(String.format("Bitte geben sie mindestens %d Buchstaben ein!", 1));
         } else {
-            System.out.println(usingUsername.getValue());
             model.addNachricht(new Nachricht(message.getValue()), user, username.getValue(), usingUsername.getValue());
         }
         mainApp.showNachrichten(user);

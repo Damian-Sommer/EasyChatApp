@@ -28,9 +28,6 @@ public class MockModel implements NachrichtModel, UserModel {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
     }
 
-    
-
-
     @Override
     public List<User> getUser() {
         return users;
@@ -50,7 +47,6 @@ public class MockModel implements NachrichtModel, UserModel {
                     if (users.get(i).getPassword().equals(user.getPassword())) {
                         return 0;
                     }
-
                 }
             }
             return -1;
@@ -58,7 +54,6 @@ public class MockModel implements NachrichtModel, UserModel {
         } else {
             return -2;
         }
-
     }
 
     @Override
@@ -77,7 +72,6 @@ public class MockModel implements NachrichtModel, UserModel {
             } else {
                 addUser(new User(password, username));
                 return 0;
-
             }
         }
         return -3;
@@ -92,7 +86,6 @@ public class MockModel implements NachrichtModel, UserModel {
     public int getRightUser(String username, String password) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 
     @Override
     public void addNachricht(Nachricht nachricht, User user, String value, Boolean value0) {

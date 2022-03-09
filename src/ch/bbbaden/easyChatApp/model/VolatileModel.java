@@ -20,31 +20,16 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
 
     public VolatileModel() {
 
-        //Nachrichten-Liste
-        
-        
-
-        //User-Liste
         User u1 = new User("1234", "Damian");
 
         u1.addNachricht(new Nachricht("hallo"));
         
         User u2 = new User(null, "root");
         users.add(u2);
-        // u1.setNachrichten(nachrichten);
-        //u1.addNachricht(n13);
         users.add(u1);
     }
 
-    /*
-
-    @Override
-    public void addNachricht(Nachricht nachricht) {
-        List<Nachricht> oldNachrichten = new ArrayList<>(nachrichten);
-        nachrichten.add(nachricht);
-        changes.firePropertyChange("nachrichten", oldNachrichten, nachrichten);
-    }
-     */
+    
     @Override
     public List<User> getUser() {
         return users;
@@ -91,17 +76,11 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
             } else {
                 addUser(new User(password, username));
                 return 0;
-
             }
         }
         return -3;
 
-    }/*
-    public void addNachricht(User user, Nachricht nachricht){
-        List<Nachricht> oldNachricht = user.getNachrichten();
-        user.addNachricht(nachricht);
-        changes.firePropertyChange("nachrichten", oldNachricht, user.getNachrichten());
-    }*/
+    }
 
     @Override
     public List<Nachricht> getAllNachrichten(User user) {
