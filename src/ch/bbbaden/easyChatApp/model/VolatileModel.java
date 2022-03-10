@@ -103,7 +103,7 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
 
     @Override
     public void addNachricht(Nachricht nachricht, User user, String username, Boolean usingUsername) {
-        if(usingUsername)
+        if(usingUsername)   
         {
             for(User userSending : users){
             if(userSending.getBenutzerName().equals(username)){

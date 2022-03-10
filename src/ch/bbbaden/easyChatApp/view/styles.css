@@ -7,6 +7,12 @@
     -fx-background-radius: 30;
     -fx-background-color: #8092B4;
 }
+.button:hover{
+    -fx-background-color: #5487e8;
+}
+.button:focused{
+    -fx-background-color: #5487e8;
+}
 #errorLabel{
     -fx-text-fill: #e34d4d;
     -fx-alignment: CENTER;
