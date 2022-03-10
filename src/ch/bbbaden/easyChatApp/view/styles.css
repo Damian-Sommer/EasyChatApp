@@ -1,5 +1,6 @@
 .root{
     -fx-background-color: linear-gradient(to right bottom, #181a1e, #253347, #2d4f75, #2e6da6);;
+    -fx-font: Verdana;
 }
 .button{
     -fx-text-fill: #FFFFFF;
