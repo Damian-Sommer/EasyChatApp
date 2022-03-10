@@ -25,6 +25,7 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -62,13 +63,14 @@ public class MainApp extends Application {
             Parent root;
             root = loader.load();
             FXMLChatClientView clientView = loader.getController();
-            ChatClientViewModel viewModel = new ChatClientViewModel(nachrichtModel,user);
+            ChatClientViewModel viewModel = new ChatClientViewModel(nachrichtModel, user);
             viewModel.setMainApp(this);
             nachrichtModel.addPropertyChangeListener(viewModel);
             clientView.setViewModel(viewModel);
             clientView.bind();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(css);
+            stage.getIcons().add(new Image(this.getClass().getResource("resources/logo.png").toString()));
             stage.setScene(scene);
             stage.setMinWidth(600);
             stage.show();
@@ -95,7 +97,7 @@ public class MainApp extends Application {
             scene.getStylesheets().add(css);
             stage.setMinWidth(600);
             stage.setScene(scene);
-            
+
             stage.show();
 
         } catch (IOException ex) {
@@ -117,7 +119,10 @@ public class MainApp extends Application {
             Scene scene = new Scene(root);
 
             scene.getStylesheets().add(css);
+            stage.getIcons().add(new Image(this.getClass().getResourceAsStream("view/logo.png")));
+
             stage.setMinWidth(600);
+            stage.setMinHeight(400);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {

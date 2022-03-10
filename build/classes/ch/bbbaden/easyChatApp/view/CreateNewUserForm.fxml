@@ -26,14 +26,14 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnAbbrechen" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chancelAction" prefHeight="42.0" prefWidth="96.0" text="Abbrechen" textFill="#156173" HBox.hgrow="NEVER">
+                  <Button fx:id="btnAbbrechen" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chancelAction" prefHeight="42.0" prefWidth="99.0" text="Abbrechen" textFill="#156173" HBox.hgrow="NEVER">
                      <HBox.margin>
-                        <Insets right="10.0" />
+                        <Insets right="7.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnErstellen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#creatingUserLogin" prefHeight="42.0" prefWidth="96.0" text="Erstellen" textFill="#156173" HBox.hgrow="NEVER">
+                  <Button fx:id="btnErstellen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#creatingUserLogin" prefHeight="42.0" prefWidth="77.0" text="Erstellen" textFill="#156173" HBox.hgrow="NEVER">
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="6.0" />
                      </HBox.margin>
                   </Button>
                </children>
@@ -57,8 +57,14 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" />
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Passwort wiederholen" textAlignment="CENTER" textFill="#156173" />
+                  <TextField fx:id="txtPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></TextField>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Passwort wiederholen" textAlignment="CENTER" textFill="#156173">
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding></Label>
                   <TextField fx:id="txtPasswordRepetition" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" />
                   <Label fx:id="errorLabel" contentDisplay="CENTER" prefHeight="17.0" prefWidth="380.0" text="öjkeaöw" textAlignment="CENTER" wrapText="true" VBox.vgrow="NEVER" />
                </children>

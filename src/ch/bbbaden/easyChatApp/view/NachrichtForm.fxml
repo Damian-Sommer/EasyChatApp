@@ -27,11 +27,11 @@
                <children>
                   <Button fx:id="buttonAbbrechen" mnemonicParsing="false" onAction="#chancelAction" prefHeight="42.0" prefWidth="105.0" stylesheets="@styles.css" text="Abbrechen">
                      <HBox.margin>
-                        <Insets right="10.0" />
+                        <Insets right="7.0" />
                      </HBox.margin></Button>
                   <Button fx:id="buttonSenden" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#saveAction" prefHeight="42.0" prefWidth="95.0" stylesheets="@styles.css" text="Senden" textFill="#156173">
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="6.0" />
                      </HBox.margin></Button>
                </children>
             </HBox>

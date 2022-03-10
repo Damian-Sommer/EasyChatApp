@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 public class FXMLAnmeldungView implements Initializable {
@@ -48,12 +50,16 @@ public class FXMLAnmeldungView implements Initializable {
     @FXML // fx:id="errorLabel"
     private Label errorLabel; // Value injected by FXMLLoader
 
+    @FXML
+    private ImageView imv;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         errorLabel.wrapTextProperty().set(true);
 
         errorLabel.setText("");
-        
+
         assert btnAbbrechen != null : "fx:id=\"btnAbbrechen\" was not injected: check your FXML file 'FXMLAnmeldung.fxml'.";
         assert btnEinloggen != null : "fx:id=\"btnEinloggen\" was not injected: check your FXML file 'FXMLAnmeldung.fxml'.";
         assert txtUsername != null : "fx:id=\"txtUsername\" was not injected: check your FXML file 'FXMLAnmeldung.fxml'.";
@@ -76,11 +82,11 @@ public class FXMLAnmeldungView implements Initializable {
         viewModel.chancelAction();
     }
 
-     @FXML
+    @FXML
     void createNewUser(ActionEvent event) {
         viewModel.createNewUser();
     }
-    
+
     public void setViewModel(AnmeldungViewModel viewModel) {
         this.viewModel = viewModel;
     }

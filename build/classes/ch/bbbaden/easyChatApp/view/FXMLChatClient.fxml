@@ -30,12 +30,12 @@
                <children>
                   <Button fx:id="chancelButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chancelAction" prefHeight="42.0" prefWidth="96.0" text="Abbrechen" textAlignment="CENTER" HBox.hgrow="NEVER">
                      <HBox.margin>
-                        <Insets right="10.0" />
+                        <Insets right="7.0" />
                      </HBox.margin>
                   </Button>
                   <Button fx:id="neueNachricht" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#neueNachricht" prefHeight="42.0" prefWidth="147.0" stylesheets="@styles.css" text=" Neue Nachricht" textAlignment="CENTER" textFill="#156173" HBox.hgrow="NEVER">
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="6.0" />
                      </HBox.margin>
                   </Button>
                </children>
