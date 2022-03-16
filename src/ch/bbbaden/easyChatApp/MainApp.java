@@ -70,7 +70,7 @@ public class MainApp extends Application {
             clientView.bind();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(css);
-            stage.getIcons().add(new Image(this.getClass().getResource("resources/logo.png").toString()));
+            stage.getIcons().add(new Image(this.getClass().getResource("view/logo.png").toString()));
             stage.setScene(scene);
             stage.setMinWidth(600);
             stage.show();
@@ -93,11 +93,10 @@ public class MainApp extends Application {
             formView.setViewModel(viewModel);
             formView.bind();
             Scene scene = new Scene(root);
-            //scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             scene.getStylesheets().add(css);
             stage.setMinWidth(600);
             stage.setScene(scene);
-
+            stage.getIcons().add(new Image(this.getClass().getResource("view/logo.png").toString()));
             stage.show();
 
         } catch (IOException ex) {
@@ -120,7 +119,6 @@ public class MainApp extends Application {
 
             scene.getStylesheets().add(css);
             stage.getIcons().add(new Image(this.getClass().getResourceAsStream("view/logo.png")));
-
             stage.setMinWidth(600);
             stage.setMinHeight(400);
             stage.setScene(scene);
@@ -145,6 +143,7 @@ public class MainApp extends Application {
             Scene scene = new Scene(root);
 
             scene.getStylesheets().add(css);
+            stage.getIcons().add(new Image(this.getClass().getResource("view/logo.png").toString()));
             stage.setMinWidth(600);
             stage.setScene(scene);
             stage.show();
