@@ -4,4 +4,3 @@ You can log in to this Chat App with the Accountings: Benutzername --> Damian an
 
 This Application is built with the MVVM Pattern
 
-   [x]hallo
