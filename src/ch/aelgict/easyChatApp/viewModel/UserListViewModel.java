@@ -40,9 +40,20 @@ public class UserListViewModel extends ViewModel implements PropertyChangeListen
 
     public ObservableList<User> getUserList() {
         getAllUsersFromNachrichten();
+        this.users.removeAll();
+        this.users.setAll(removeDuplicatesFromUser());
         return users;
     }
 
+    private ArrayList<User> removeDuplicatesFromUser(){
+        ArrayList<User> newUserList = new ArrayList<>();
+        for(User user : users){
+            if(!newUserList.contains(user)){
+                newUserList.add(user);
+            }
+        }
+        return newUserList;
+    }
     private void getAllUsersFromNachrichten(){
         for(Nachricht nachricht : nachrichten){
             if(nachricht.getAbsender().getUseruid().equals(user.getUseruid())){
