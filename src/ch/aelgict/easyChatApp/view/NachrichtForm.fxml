@@ -42,6 +42,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </TextArea>
+                  <Label fx:id="errorLabelEmail" contentDisplay="CENTER" prefHeight="17.0" prefWidth="380.0" styleClass="errorLabel" text="öjkeaöw" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
          </center>

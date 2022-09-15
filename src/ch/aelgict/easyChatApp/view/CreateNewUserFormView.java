@@ -50,10 +50,31 @@ public class CreateNewUserFormView implements Initializable {
     private TextField txtPassword; // Value injected by FXMLLoader
 
     @FXML // fx:id="errorLabel"
-    private Label errorLabel; // Value injected by FXMLLoader
+    private Label errorLabelNachname; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="errorLabelEmail"
+    private Label errorLabelEmail; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="errorLabelVorname"
+    private Label errorLabelVorname; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="errorLabelPassword"
+    private Label errorLabelPassword; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="errorLabelUsername"
+    private Label errorLabelUsername; // Value injected by FXMLLoader
 
     @FXML // fx:id="txtPasswordRepetition"
     private TextField txtPasswordRepetition; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="txtVorname"
+    private TextField txtVorname; // Value injected by FXMLLoader
+
+    @FXML // fx:id="txtNachname"
+    private TextField txtNachname; // Value injected by FXMLLoader
+
+    @FXML // fx:id="txtEmail"
+    private TextField txtEmail; // Value injected by FXMLLoader
 
     @FXML
     void chancelAction(ActionEvent event) {
@@ -73,16 +94,32 @@ public class CreateNewUserFormView implements Initializable {
         txtUsername.textProperty().bindBidirectional(viewModel.getUserName());
         txtPassword.textProperty().bindBidirectional(viewModel.getPassword());
         txtPasswordRepetition.textProperty().bindBidirectional(viewModel.getPasswordRepeat());
-        errorLabel.textProperty().bind(viewModel.getErrorMessage());
-
+        
+        errorLabelUsername.textProperty().bind(viewModel.getErrorMessageUsername());
+        errorLabelEmail.textProperty().bind(viewModel.getErrorMessageEmail());
+        errorLabelPassword.textProperty().bind(viewModel.getErrorMessagePassword());
+        errorLabelNachname.textProperty().bind(viewModel.getErrorMessageNachname());
+        errorLabelVorname.textProperty().bind(viewModel.getErrorMessageVorname());
+        
+        txtVorname.textProperty().bindBidirectional(viewModel.getVorname());
+        txtNachname.textProperty().bindBidirectional(viewModel.getNachname());
+        txtEmail.textProperty().bindBidirectional(viewModel.getEmail());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        errorLabel.wrapTextProperty().set(true);
+        errorLabelUsername.wrapTextProperty().set(true);
+        errorLabelPassword.wrapTextProperty().set(true);
+        errorLabelEmail.wrapTextProperty().set(true);
+        errorLabelVorname.wrapTextProperty().set(true);
+        errorLabelNachname.wrapTextProperty().set(true);
 
-        errorLabel.setText("");
+        errorLabelEmail.setText("");
+        errorLabelNachname.setText("");
+        errorLabelPassword.setText("");
+        errorLabelUsername.setText("");
+        errorLabelVorname.setText("");
 
         assert btnAbbrechen != null : "fx:id=\"btnAbbrechen\" was not injected: check your FXML file 'CreateNewUserForm.fxml'.";
         assert btnErstellen != null : "fx:id=\"btnErstellen\" was not injected: check your FXML file 'CreateNewUserForm.fxml'.";

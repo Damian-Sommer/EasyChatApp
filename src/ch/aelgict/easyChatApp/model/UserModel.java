@@ -27,6 +27,6 @@ public interface UserModel {
     
     public abstract int proveUser(User user);
 
-    public abstract int createNewUser(String username, String password, String passwordRepeat);
+    public abstract int[] createNewUser(String username, String password, String passwordRepeat, String vorname, String nachname, String email);
         
 }

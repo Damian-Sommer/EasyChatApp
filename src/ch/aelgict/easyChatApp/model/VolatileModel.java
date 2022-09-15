@@ -9,6 +9,8 @@ import ch.aelgict.easyChatApp.entity.Nachricht;
 import ch.aelgict.easyChatApp.entity.User;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -16,15 +18,16 @@ import java.util.List;
  */
 public class VolatileModel extends Model implements NachrichtModel, UserModel {
 
+    private Pattern pattern = Pattern.compile("[a-zA-Z0-9._-]{3,}@[a-zA-Z0-9.-]{3,}\\.[a-zA-Z]{2,4}");
     private final List<User> users = new ArrayList();
 
     public VolatileModel() {
 
-        User u1 = new User("1234", "Damian");
+        User u1 = new User("1234", "damian", "Damian", "Sommer", "info@aelgict.ch");
 
         u1.addNachricht(new Nachricht("hallo", u1, u1));
 
-        User u2 = new User(null, "root");
+        User u2 = new User(null, "root", "jeawioj", "jieoawo", "info@aelgict.ch");
         users.add(u2);
         users.add(u1);
     }
@@ -59,25 +62,69 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
     }
 
     @Override
-    public int createNewUser(String username, String password, String passwordRepeat) {
-
-        if (username != null) {
-            for (int i = 0; i < users.size(); i++) {
-                if (users.get(i).getBenutzerName().equals(username)) {
-                    return -1;
-                }
-            }
-            if ((password == null && passwordRepeat == null)) {
-                addUser(new User(password, username));
-                return 0;
-            } else if (!password.equals(passwordRepeat)) {
-                return -2;
-            } else {
-                addUser(new User(password, username));
-                return 0;
+    public int[] createNewUser(String username, String password, String passwordRepeat, String vorname, String nachname, String email) {
+        int[] ret = new int[5];
+        Matcher matcher = null;
+        
+        if(email==null){
+            ret[4] = -3;
+        } else {
+            matcher = pattern.matcher(email);
+            if(!matcher.matches()){
+                ret[4]= -1;
+            }else{
+                ret[4] = 0;
             }
         }
-        return -3;
+        
+
+        ret[0] = 0;
+
+        if (username == null) {
+            ret[0] = -1;
+        } else if (username.length() <= 4) {
+            ret[0] = -2;
+        } else {
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getBenutzerName().equals(username)) {
+                    ret[0] = -3;
+                } else if (users.get(i).getEmail().equals(email)) {
+                    ret[4] = -2;
+                }
+            }
+        }
+
+        if ((password == null && passwordRepeat == null)) {
+            ret[1] = 0;
+        } else if (!password.equals(passwordRepeat)) {
+            ret[1] = -2;
+        } else {
+            ret[1] = 0;
+        }
+
+        if (vorname.length() <= 1) {
+            ret[2] = -1;
+        } else {
+            ret[2] = 0;
+        }
+
+        if (nachname.length() <= 1) {
+            ret[3] = -1;
+        } else {
+            ret[3] = 0;
+        }
+        int returnOrCreateNewUser = 0;
+        for (int i = 0; i < ret.length; i++) {
+            if (ret[i] != 0) {
+                returnOrCreateNewUser = 1;
+            }
+        }
+
+        if (returnOrCreateNewUser != 0) {
+            return ret;
+        }
+        addUser(new User(password, username, vorname, nachname, email));
+        return ret;
 
     }
 

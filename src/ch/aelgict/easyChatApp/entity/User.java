@@ -19,17 +19,27 @@ public class User {
     private String useruid;
     private String password;
     private String benutzerName;
+    private String vorname;
+    private String nachname;
     private String email;
     
     private List<Nachricht> nachrichten;
-    
-    public User(String password, String benutzerName) {
+
+    public User(String password, String benutzerName, String vorname, String nachname, String email) {
         this.password = password;
         this.benutzerName = benutzerName;
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.email = email;
         this.nachrichten = new ArrayList();
         this.useruid = UUID.randomUUID().toString();
     }
 
+    public User(String password, String benutzerName) {
+        this.password = password;
+        this.benutzerName = benutzerName;
+    }
+    
     public String getPassword() {
         return password;
     }
@@ -80,6 +90,22 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
     }
 
     

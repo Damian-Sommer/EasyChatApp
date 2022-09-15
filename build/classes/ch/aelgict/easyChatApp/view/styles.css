@@ -14,7 +14,7 @@
 .button:focused{
     -fx-background-color: #5487e8;
 }
-#errorLabel{
+.errorLabel{
     -fx-text-fill: #e34d4d;
     -fx-alignment: CENTER;
 }
