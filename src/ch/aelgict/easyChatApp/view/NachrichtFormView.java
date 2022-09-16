@@ -25,10 +25,13 @@ public class NachrichtFormView implements Initializable {
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
-
+    
     @FXML // fx:id="txtInput"
     private TextArea txtInput; // Value injected by FXMLLoader
 
+    @FXML
+    private Label errorLabel;
+    
     @FXML // fx:id="buttonSenden"
     private Button buttonSenden; // Value injected by FXMLLoader
 
@@ -42,6 +45,7 @@ public class NachrichtFormView implements Initializable {
 
     public void bind() {
         txtInput.textProperty().bindBidirectional(viewModel.getMessage());
+        errorLabel.textProperty().bindBidirectional(viewModel.getErrorMessage());
     }
 
     @FXML

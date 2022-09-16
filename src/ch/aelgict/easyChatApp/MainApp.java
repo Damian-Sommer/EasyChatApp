@@ -80,7 +80,7 @@ public class MainApp extends Application {
         }
     }
 
-    public void showNachrichtenForm(User user, User me) {
+    public void showNachrichtenForm(User user, User me, int chancelOption) {
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("view/NachrichtForm.fxml"));
@@ -88,6 +88,7 @@ public class MainApp extends Application {
             root = loader.load();
             NachrichtFormView formView = loader.getController();
             NachrichtFormViewModel viewModel = new NachrichtFormViewModel(nachrichtModel, user, me);
+            viewModel.setChancelOption(chancelOption);
             viewModel.setMainApp(this);
             formView.setViewModel(viewModel);
             formView.bind();

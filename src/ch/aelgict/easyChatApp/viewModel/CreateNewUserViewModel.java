@@ -8,7 +8,6 @@ package ch.aelgict.easyChatApp.viewModel;
 import ch.aelgict.easyChatApp.entity.User;
 import ch.aelgict.easyChatApp.model.UserModel;
 import java.util.List;
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 

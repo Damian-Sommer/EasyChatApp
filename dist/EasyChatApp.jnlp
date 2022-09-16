@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="EasyChatApp.jar" size="55963" download="eager" />
+    <jar href="EasyChatApp.jar" size="57187" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="ch.aelgict.easyChatApp.MainApp"  name="EasyChatApp" />
   <update check="always"/>

@@ -147,11 +147,6 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         return -1;
     }
 
-    /**
-     *
-     * @param username
-     * @return
-     */
     @Override
     public User getUser(String username) {
         for (User user : users) {
@@ -194,5 +189,4 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         }
         return nachrichtenBetween;
     }
-
 }

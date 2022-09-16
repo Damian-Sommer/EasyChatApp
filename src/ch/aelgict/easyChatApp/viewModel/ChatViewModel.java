@@ -49,7 +49,7 @@ public class ChatViewModel extends ViewModel implements PropertyChangeListener {
     }
 
     public void addNachricht() {
-        mainApp.showNachrichtenForm(user, me);
+        mainApp.showNachrichtenForm(user, me, 0);
     }
 
     @Override

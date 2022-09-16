@@ -26,6 +26,7 @@ public interface NachrichtModel {
     public abstract ArrayList<Nachricht> getNachrichtenBetween(User me, User user);
     
     public abstract User getUser(String username);
+    
     public void addNachricht(Nachricht nachricht);
     
 }

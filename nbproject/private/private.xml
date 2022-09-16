@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/da_so/OneDrive/Github/EasyChatApp/src/ch/aelgict/easyChatApp/view/NachrichtFormView.java</file>
+            <file>file:/C:/Users/da_so/OneDrive/Github/EasyChatApp/src/ch/aelgict/easyChatApp/view/CreateNewUserFormView.java</file>
+            <file>file:/C:/Users/da_so/OneDrive/Github/EasyChatApp/src/ch/aelgict/easyChatApp/view/FXMLUserList.java</file>
+            <file>file:/C:/Users/da_so/OneDrive/Github/EasyChatApp/src/ch/aelgict/easyChatApp/model/NachrichtModel.java</file>
+            <file>file:/C:/Users/da_so/OneDrive/Github/EasyChatApp/src/ch/aelgict/easyChatApp/viewModel/CreateNewUserViewModel.java</file>
+            <file>file:/C:/Users/da_so/OneDrive/Github/EasyChatApp/src/ch/aelgict/easyChatApp/model/VolatileModel.java</file>
+            <file>file:/C:/Users/da_so/OneDrive/Github/EasyChatApp/src/ch/aelgict/easyChatApp/viewModel/NachrichtFormViewModel.java</file>
+            <file>file:/C:/Users/da_so/OneDrive/Github/EasyChatApp/src/ch/aelgict/easyChatApp/viewModel/UserListViewModel.java</file>
+            <file>file:/C:/Users/da_so/OneDrive/Github/EasyChatApp/src/ch/aelgict/easyChatApp/viewModel/ChatViewModel.java</file>
+            <file>file:/C:/Users/da_so/OneDrive/Github/EasyChatApp/src/ch/aelgict/easyChatApp/model/UserModel.java</file>
+        </group>
     </open-files>
 </project-private>
