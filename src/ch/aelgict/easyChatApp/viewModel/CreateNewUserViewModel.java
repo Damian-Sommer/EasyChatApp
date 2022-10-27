@@ -95,7 +95,7 @@ public class CreateNewUserViewModel extends ViewModel {
             }
             
             switch (ret[1]){
-                case -1:
+                case -2:
                     errorMessagePassword.setValue("Passwort stimmt nicht überein");
                     break;
                 case 0:

@@ -6,6 +6,7 @@
 package ch.aelgict.easyChatApp;
 
 import ch.aelgict.easyChatApp.entity.User;
+import ch.aelgict.easyChatApp.model.InternetConnection;
 import ch.aelgict.easyChatApp.model.NachrichtModel;
 import ch.aelgict.easyChatApp.model.UserModel;
 import ch.aelgict.easyChatApp.model.VolatileModel;
@@ -48,6 +49,8 @@ public class MainApp extends Application {
         VolatileModel model = new VolatileModel();
         nachrichtModel = model;
         userModel = model;
+        InternetConnection internetConnection = new InternetConnection();
+        System.out.println(internetConnection.isConnected());
         showAnmeldungForm();
     }
 

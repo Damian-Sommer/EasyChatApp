@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -43,8 +44,8 @@ public class FXMLAnmeldungView implements Initializable {
     @FXML // fx:id="txtUsername"
     private TextField txtUsername; // Value injected by FXMLLoader
 
-    @FXML // fx:id="txtPassword"
-    private TextField txtPassword; // Value injected by FXMLLoader
+    @FXML
+    private PasswordField txtPassword;
 
     @FXML // fx:id="errorLabel"
     private Label errorLabel; // Value injected by FXMLLoader

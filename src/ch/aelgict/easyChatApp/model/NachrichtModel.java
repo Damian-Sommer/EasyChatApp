@@ -27,6 +27,6 @@ public interface NachrichtModel {
     
     public abstract User getUser(String username);
     
-    public void addNachricht(Nachricht nachricht);
+    public boolean addNachricht(Nachricht nachricht);
     
 }

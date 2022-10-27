@@ -23,7 +23,7 @@ public interface UserModel {
     
     public abstract int getRightUser(String username, String password);
 
-    public abstract void addUser(User user);
+    public abstract boolean addUser(User user);
     
     public abstract int proveUser(User user);
 
