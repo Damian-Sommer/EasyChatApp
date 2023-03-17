@@ -51,25 +51,31 @@ public class AnmeldungViewModel extends ViewModel {
     }
 
     public void proveUser() {
-
+        System.out.println("Prove User");
         int ret = model.proveUser(new User(password.getValue(), userName.getValue()));
-        if (ret == 0) {
-            //User selectedUser = new User(password.getValue(), userName.getValue());
-            int index = model.getRightUser(userName.getValue(), password.getValue());
-            if (index >= 0) {
-                User user = model.getUserList().get(index);
-                //mainApp.showNachrichtenverlauf(user);
-                mainApp.showUserList(user);
-            }
-            errorMessage.setValue("Benutzername oder Passwort ist Falsch!");
-        } else if (ret == -1) {
-            errorMessage.setValue("Benutzername oder Passwort ist Falsch!");
-        } else if (ret == -2) {
-            errorMessage.setValue("Bitte geben Sie den Benutzernamen ein!");
-        } else {
-            errorMessage.setValue("");
+        switch (ret) {
+            case 0:
+                System.out.println("Got User");
+                //User selectedUser = new User(password.getValue(), userName.getValue());
+                int index = model.getRightUser(userName.getValue(), password.getValue());
+                if (index != -1) {
+                    User user = model.getUserList().get(index);
+                    //mainApp.showNachrichtenverlauf(user);
+                    mainApp.showUserList(user);
+                    return;
+                }
+                errorMessage.setValue("Benutzername oder Passwort ist Falsch!");
+                break;
+            case -1:
+                errorMessage.setValue("Benutzername oder Passwort ist Falsch!");
+                break;
+            case -2:
+                errorMessage.setValue("Bitte geben Sie den Benutzernamen ein!");
+                break;
+            default:
+                errorMessage.setValue("");
+                break;
         }
-
     }
 
     public void chancelAction() {

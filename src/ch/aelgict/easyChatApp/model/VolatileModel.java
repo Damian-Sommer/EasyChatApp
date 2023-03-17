@@ -22,51 +22,92 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
     private final List<User> users = new ArrayList();
 
     public VolatileModel() {
-        /*
+        
         User u1 = new User("1234", "damian", "Damian", "Sommer", "info@aelgict.ch");
         User u2 = new User(null, "root", "jeawioj", "jieoawo", "info@aelgict.ch");
         users.add(u2);
-        users.add(u1);*/
+        users.add(u1);
+        System.out.println("Added users");
     }
 
+    /**
+     * Returns the list of Users
+     *
+     * @return
+     */
     @Override
     public List<User> getUserList() {
         return users;
     }
 
+    /**
+     * Adds a User to a list of Users
+     *
+     * @param user
+     * @return
+     */
     @Override
     public boolean addUser(User user) {
+        System.out.println("Add user");
         List<User> oldUsers = new ArrayList<>(users);
         for (User userElem : this.users) {
             if (userElem.getBenutzerName().equals(user.getBenutzerName())) {
+                System.out.println("Didnt add user");
+
                 return false;
             }
         }
         users.add(user);
         changes.firePropertyChange("users", oldUsers, users);
+        System.out.println("Added User Right");
         return true;
     }
 
+    /**
+     * Checks if the user already exists in the list of users
+     *
+     * @param user
+     * @return
+     */
     @Override
     public int proveUser(User user) {
+        System.out.println(user.getBenutzerName());
+        System.out.println(user.getPassword());
+        System.out.println("Prove User");
         if (user == null) {
+            System.out.println("User is null");
             return -3;
         }
         if (user.getBenutzerName() != null) {
             for (int i = 0; i < users.size(); i++) {
                 if (users.get(i).getBenutzerName().equals(user.getBenutzerName())) {
                     if (users.get(i).getPassword() == null && user.getPassword() == null) {
+                        System.out.println("Right");
                         return 0;
                     } else if (users.get(i).getPassword().equals(user.getPassword())) {
+                        System.out.println("Right");
                         return 0;
                     }
                 }
             }
             return -1;
         }
+        System.out.println("No User is found");
         return -2;
     }
 
+    /**
+     * Checks if the User is valid, if so, the user will be created. Otherwise,
+     * there will be a return wich says what isnt valid.
+     *
+     * @param username
+     * @param password
+     * @param passwordRepeat
+     * @param vorname
+     * @param nachname
+     * @param email
+     * @return
+     */
     @Override
     public int[] createNewUser(String username, String password, String passwordRepeat, String vorname, String nachname, String email) {
         int[] ret = new int[5];
@@ -133,6 +174,12 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
 
     }
 
+    /**
+     * Returns a all the messages of the user given as parameter.
+     *
+     * @param user
+     * @return
+     */
     @Override
     public List<Nachricht> getAllNachrichten(User user) {
         if (user.getNachrichten() == null) {
@@ -143,18 +190,30 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
 
     @Override
     public int getRightUser(String username, String password) {
+        System.out.println("Get Right User");
         for (User user : users) {
             if (user.getBenutzerName().equals(username)) {
                 if (user.getPassword() == null && password == null) {
+                    System.out.println("Got right user");
                     return users.indexOf(user);
                 } else if (user.getPassword().equals(password)) {
+                    System.out.println("Got right user");
+
                     return users.indexOf(user);
                 }
             }
         }
+        System.out.println("Didnt get right user");
+
         return -1;
     }
 
+    /**
+     * Returns the User by his username
+     *
+     * @param username
+     * @return
+     */
     @Override
     public User getUser(String username) {
         for (User user : users) {
@@ -165,6 +224,12 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         return null;
     }
 
+    /**
+     * Adds a message to a user and a other user.
+     *
+     * @param nachricht
+     * @return
+     */
     @Override
     public boolean addNachricht(Nachricht nachricht) {
         if (nachricht == null) {
@@ -188,6 +253,13 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         return true;
     }
 
+    /**
+     * Returns all the messages between two users.
+     *
+     * @param me
+     * @param user
+     * @return
+     */
     @Override
     public ArrayList<Nachricht> getNachrichtenBetween(User me, User user) {
         ArrayList<Nachricht> alleNachrichten = (ArrayList<Nachricht>) getAllNachrichten(me);

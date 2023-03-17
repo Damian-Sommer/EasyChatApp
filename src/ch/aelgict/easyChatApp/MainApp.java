@@ -49,8 +49,7 @@ public class MainApp extends Application {
         VolatileModel model = new VolatileModel();
         nachrichtModel = model;
         userModel = model;
-        InternetConnection internetConnection = new InternetConnection();
-        System.out.println(internetConnection.isConnected());
+        System.out.println("Is Internet Connected: "+ InternetConnection.isConnected());
         showAnmeldungForm();
     }
 

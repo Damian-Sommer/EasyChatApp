@@ -34,6 +34,11 @@ public class User {
         this.nachrichten = new ArrayList();
         this.useruid = UUID.randomUUID().toString();
     }
+
+    public User(String password, String benutzerName) {
+        this.password = password;
+        this.benutzerName = benutzerName;
+    }
     
     public String getPassword() {
         return password;
