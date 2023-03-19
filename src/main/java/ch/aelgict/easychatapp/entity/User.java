@@ -5,6 +5,10 @@
  */
 package ch.aelgict.easychatapp.entity;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +19,7 @@ import java.util.UUID;
  */
 public class User {
     
-    private int userId;
+    private String uuid;
     private String useruid;
     private String password;
     private String benutzerName;
@@ -25,7 +29,11 @@ public class User {
     
     private List<Nachricht> nachrichten;
     
-    public User(String password, String benutzerName, String vorname, String nachname, String email) {
+    public User(String password, String benutzerName, String vorname, String nachname, String email, String uuid) {
+        if(uuid == null){
+            uuid = UUID.randomUUID().toString();
+        }
+        this.uuid = uuid;
         this.password = password;
         this.benutzerName = benutzerName;
         this.vorname = vorname;
@@ -39,7 +47,7 @@ public class User {
         this.password = password;
         this.benutzerName = benutzerName;
     }
-    
+
     public String getPassword() {
         return password;
     }
@@ -68,12 +76,12 @@ public class User {
         this.nachrichten = nachrichten;
     }
     
-    public int getUserId() {
-        return userId;
+    public String getUserId() {
+        return uuid;
     }
     
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(String uuid) {
+        this.uuid = uuid;
     }
     
     public String getUseruid() {
@@ -106,5 +114,50 @@ public class User {
     
     public void setNachname(String nachname) {
         this.nachname = nachname;
+    }
+
+    public String createUserJSON(){
+        JSONObject object = new JSONObject();
+        object.put("useruid", uuid);
+        object.put("username", benutzerName);
+        object.put("password", password);
+        object.put("prename", vorname);
+        object.put("lastname", nachname);
+        object.put("email", email);
+        return object.toJSONString();
+    }
+
+    public static User fromJSON(String json) {
+        JSONParser jsonParser = new JSONParser();
+        JSONObject object = null;
+        try{
+            object = (JSONObject) jsonParser.parse(json);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        User user = new User(object.get("password").toString(), object.get("username").toString(), object.get("prename").toString(), object.get("lastname").toString(), object.get("email").toString(), object.get("useruid").toString());
+        System.out.println("User: "+user);
+        return user;
+    }
+
+    public static ArrayList<User> fromJSONList(String json){
+        JSONParser jsonParser = new JSONParser();
+        JSONArray object = null;
+        try{
+            object = (JSONArray) jsonParser.parse(json);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(object.toJSONString());
+        ArrayList<User> users = new ArrayList<User>();
+        for (int i = 0; i < object.size(); i++){
+            JSONObject elem = (JSONObject) object.get(i);
+            users.add(new User(elem.get("password").toString(), elem.get("username").toString(), elem.get("prename").toString(), elem.get("lastname").toString(), elem.get("email").toString(), elem.get("useruid").toString()));
+        }
+        return users;
+    }
+    @Override
+    public String toString(){
+        return createUserJSON();
     }
 }

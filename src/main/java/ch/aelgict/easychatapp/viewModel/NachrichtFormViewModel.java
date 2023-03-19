@@ -58,7 +58,7 @@ public class NachrichtFormViewModel extends ViewModel {
             mainApp.showNachrichtenForm(user, me, 0);
         } else {
             //model.addNachricht(new Nachricht(message.getValue(),me, user), user, username.getValue(), usingUsername.getValue());
-            model.addNachricht(new Nachricht(message.getValue(),me, user));
+            model.addNachricht(new Nachricht(message.getValue(),me, user, null));
             mainApp.showNachrichtenverlauf(user, me);
         }
     }

@@ -22,12 +22,12 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
     private final List<User> users = new ArrayList();
 
     public VolatileModel() {
-        
-        User u1 = new User("1234", "damian", "Damian", "Sommer", "info@aelgict.ch");
-        User u2 = new User(null, "root", "jeawioj", "jieoawo", "info@aelgict.ch");
+        /*
+        User u1 = new User("1234", "damian", "Damian", "Sommer", "info@aelgict.ch", null);
+        User u2 = new User(null, "root", "jeawioj", "jieoawo", "info@aelgict.ch", null);
         users.add(u2);
         users.add(u1);
-        System.out.println("Added users");
+        System.out.println("Added users");*/
     }
 
     /**
@@ -169,7 +169,7 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
         if (returnOrCreateNewUser != 0) {
             return ret;
         }
-        addUser(new User(password, username, vorname, nachname, email));
+        addUser(new User(password, username, vorname, nachname, email, null));
         return ret;
 
     }
