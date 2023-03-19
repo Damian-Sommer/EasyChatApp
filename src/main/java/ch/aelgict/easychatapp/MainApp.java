@@ -42,6 +42,7 @@ public class MainApp extends Application {
     }
 
     public void showNachrichtenverlauf(User user, User me) {
+        System.out.println("showNachrichtenverlauf");
         try {
             FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("FXMLChat.fxml"));
             Parent root;

@@ -59,6 +59,7 @@ public class NachrichtFormViewModel extends ViewModel {
         } else {
             //model.addNachricht(new Nachricht(message.getValue(),me, user), user, username.getValue(), usingUsername.getValue());
             model.addNachricht(new Nachricht(message.getValue(),me, user, null));
+            System.out.println("Message is created");
             mainApp.showNachrichtenverlauf(user, me);
         }
     }

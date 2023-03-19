@@ -27,12 +27,12 @@ class APIHandlerTest {
 
         User user = new User("1234", "testUser", "Damian", "Sommer", "damian@sommer5.ch", null);
         System.out.println(user);
-        APIHandler apiHandler = new APIHandler();
+        APIHandler apiHandler = APIHandler.getInstance();
         boolean ret = false;
         boolean exp = true;
         try{
             ret = apiHandler.createNewUser(user);
-        }catch (IOException | URISyntaxException | InterruptedException e){
+        }catch (IOException | URISyntaxException | InterruptedException ignored){
 
         }
         assertEquals(exp, ret);
@@ -40,12 +40,12 @@ class APIHandlerTest {
 
     @Test
     void getUserByNameAndPassword() {
-        APIHandler apiHandler = new APIHandler();
+        APIHandler apiHandler = APIHandler.getInstance();
         User ret = null;
         String expUUID = "jiewjajfaweogfmwekoaji";
         try{
             ret = apiHandler.getUserByNameAndPassword("damian", "1234");
-        }catch (IOException | URISyntaxException | InterruptedException e){
+        }catch (IOException | URISyntaxException | InterruptedException ignored){
 
         }
         assertEquals(expUUID, ret.getUserId());
@@ -53,12 +53,12 @@ class APIHandlerTest {
 
     @Test
     void getUserById() {
-        APIHandler apiHandler = new APIHandler();
+        APIHandler apiHandler = APIHandler.getInstance();
         User ret = null;
         String expUUID = "jiewjajfaweogfmwekoaji";
         try{
             ret = apiHandler.getUserById("jiewjajfaweogfmwekoaji");
-        }catch (IOException | URISyntaxException | InterruptedException e){
+        }catch (IOException | URISyntaxException | InterruptedException ignored){
 
         }
         assertEquals(expUUID, ret.getUserId());
@@ -66,12 +66,12 @@ class APIHandlerTest {
 
     @Test
     void getAllUsers() {
-        APIHandler apiHandler = new APIHandler();
+        APIHandler apiHandler = APIHandler.getInstance();
         ArrayList<User> ret = new ArrayList<User>();
         boolean exp = false;
         try{
             ret = apiHandler.getAllUsers();
-        }catch (IOException | URISyntaxException | InterruptedException e){
+        }catch (IOException | URISyntaxException | InterruptedException | org.json.simple.parser.ParseException ignored){
 
         }
         assertEquals(exp, ret.isEmpty());
@@ -83,13 +83,13 @@ class APIHandlerTest {
         System.out.println(user);
         Nachricht nachricht = new Nachricht("testNachricht", user, user, null);
         System.out.println(nachricht);
-        APIHandler apiHandler = new APIHandler();
+        APIHandler apiHandler = APIHandler.getInstance();
         boolean ret = false;
         boolean exp = true;
         try{
             apiHandler.createNewUser(user);
             ret = apiHandler.createNewMessage(nachricht);
-        }catch (IOException | URISyntaxException | InterruptedException e){
+        }catch (IOException | URISyntaxException | InterruptedException ignored){
 
         }
         assertEquals(exp, ret);
@@ -97,13 +97,13 @@ class APIHandlerTest {
 
     @Test
     void getMessagesBetweenTwoUsers() {
-        APIHandler apiHandler = new APIHandler();
+        APIHandler apiHandler = APIHandler.getInstance();
         boolean exp = false;
         ArrayList<Nachricht> nachrichten = null;
         try{
             nachrichten = apiHandler.getMessagesBetweenTwoUsers("jiewjajfawioshiseesrhaeogfmwekoaji", "jiewjajfaweogfmwekoaji");
         }catch (IOException | URISyntaxException | InterruptedException | ParseException |
-                org.json.simple.parser.ParseException e){
+                org.json.simple.parser.ParseException ignored){
 
         }
         assertEquals(exp, nachrichten.isEmpty());
@@ -111,13 +111,13 @@ class APIHandlerTest {
 
     @Test
     void getAllMessagesOfUser() {
-        APIHandler apiHandler = new APIHandler();
+        APIHandler apiHandler = APIHandler.getInstance();
         boolean exp = false;
         ArrayList<Nachricht> nachrichten = null;
         try{
             nachrichten = apiHandler.getAllMessagesOfUser("jiewjajfaweogfmwekoaji");
         }catch (IOException | URISyntaxException | InterruptedException | ParseException |
-                org.json.simple.parser.ParseException e){
+                org.json.simple.parser.ParseException ignored){
         }
         assertEquals(exp, nachrichten.isEmpty());
     }

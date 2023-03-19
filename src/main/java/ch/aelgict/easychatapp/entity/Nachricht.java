@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  *
@@ -84,7 +85,7 @@ public class Nachricht {
     public static Nachricht fromJSON(String json) throws ParseException, java.text.ParseException, URISyntaxException, IOException, InterruptedException {
         JSONParser parser = new JSONParser();
         JSONObject elem = (JSONObject) parser.parse(json);
-        APIHandler handler = new APIHandler();
+        APIHandler handler = APIHandler.getInstance();
         Date date = DATE_FORMAT.parse(elem.get("sendingTime").toString());
         User incomming = handler.getUserById(elem.get("idUserIncomming").toString());
         User outgoing = handler.getUserById(elem.get("idUserOutgoing").toString());
@@ -92,6 +93,11 @@ public class Nachricht {
     }
     public static ArrayList<Nachricht> fromJSONArray(String json) throws java.text.ParseException, URISyntaxException, IOException, InterruptedException, ParseException {
         JSONParser jsonParser = new JSONParser();
+        Object jsonObject = jsonParser.parse(json);
+        if(jsonObject instanceof JSONObject){
+            System.out.println("There are no messages");
+            return null;
+        }
         JSONArray object = null;
         try{
             object = (JSONArray) jsonParser.parse(json);

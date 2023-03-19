@@ -20,7 +20,6 @@ import java.util.UUID;
 public class User {
     
     private String uuid;
-    private String useruid;
     private String password;
     private String benutzerName;
     private String vorname;
@@ -40,7 +39,6 @@ public class User {
         this.nachname = nachname;
         this.email = email;
         this.nachrichten = new ArrayList<Nachricht>();
-        this.useruid = UUID.randomUUID().toString();
     }
 
     public User(String password, String benutzerName) {
@@ -82,14 +80,6 @@ public class User {
     
     public void setUserId(String uuid) {
         this.uuid = uuid;
-    }
-    
-    public String getUseruid() {
-        return useruid;
-    }
-    
-    public void setUseruid(String useruid) {
-        this.useruid = useruid;
     }
     
     public String getEmail() {
@@ -135,13 +125,21 @@ public class User {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+        if(object.containsKey("message")){
+            return null;
+        }
         User user = new User(object.get("password").toString(), object.get("username").toString(), object.get("prename").toString(), object.get("lastname").toString(), object.get("email").toString(), object.get("useruid").toString());
         System.out.println("User: "+user);
         return user;
     }
 
-    public static ArrayList<User> fromJSONList(String json){
+    public static ArrayList<User> fromJSONList(String json) throws ParseException {
         JSONParser jsonParser = new JSONParser();
+        Object jsonObject = jsonParser.parse(json);
+        if(jsonObject instanceof JSONObject){
+            System.out.println("There are no users");
+            return null;
+        }
         JSONArray object = null;
         try{
             object = (JSONArray) jsonParser.parse(json);

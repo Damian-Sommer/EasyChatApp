@@ -33,6 +33,8 @@ public class ChatViewModel extends ViewModel implements PropertyChangeListener {
         this.model = model;
         this.user = user;
         this.me = me;
+        System.out.println(user);
+        System.out.println(me);
         this.nachrichten.addAll(model.getNachrichtenBetween(me, user));
     }
 

@@ -7,27 +7,30 @@ package ch.aelgict.easychatapp.model;
 
 import ch.aelgict.easychatapp.entity.Nachricht;
 import ch.aelgict.easychatapp.entity.User;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
  * @author da_so
  */
 public class VolatileModel extends Model implements NachrichtModel, UserModel {
 
     private Pattern pattern = Pattern.compile("[a-zA-Z0-9._-]{3,}@[a-zA-Z0-9.-]{3,}\\.[a-zA-Z]{2,4}");
-    private final List<User> users = new ArrayList();
+    private List<User> users = new ArrayList();
+
+    private APIHandler apiHandler = APIHandler.getInstance();
 
     public VolatileModel() {
-        /*
-        User u1 = new User("1234", "damian", "Damian", "Sommer", "info@aelgict.ch", null);
-        User u2 = new User(null, "root", "jeawioj", "jieoawo", "info@aelgict.ch", null);
-        users.add(u2);
-        users.add(u1);
-        System.out.println("Added users");*/
+        var ret = apiHandler.getAllUsers();
+        if (ret != null) {
+            users = ret;
+        }
     }
 
     /**
@@ -49,16 +52,14 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
     @Override
     public boolean addUser(User user) {
         System.out.println("Add user");
-        List<User> oldUsers = new ArrayList<>(users);
         for (User userElem : this.users) {
             if (userElem.getBenutzerName().equals(user.getBenutzerName())) {
                 System.out.println("Didnt add user");
-
                 return false;
             }
         }
-        users.add(user);
-        changes.firePropertyChange("users", oldUsers, users);
+        apiHandler.createNewUser(user);
+        users = apiHandler.getAllUsers();
         System.out.println("Added User Right");
         return true;
     }
@@ -70,10 +71,13 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
      * @return
      */
     @Override
-    public int proveUser(User user) {
+    public User proveUser(User user) {
         System.out.println(user.getBenutzerName());
         System.out.println(user.getPassword());
         System.out.println("Prove User");
+        User userRet = null;
+        userRet = apiHandler.getUserByNameAndPassword(user.getBenutzerName(), user.getPassword());
+        /*
         if (user == null) {
             System.out.println("User is null");
             return -3;
@@ -93,7 +97,8 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
             return -1;
         }
         System.out.println("No User is found");
-        return -2;
+        return -2;*/
+        return userRet;
     }
 
     /**
@@ -182,15 +187,28 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
      */
     @Override
     public List<Nachricht> getAllNachrichten(User user) {
-        if (user.getNachrichten() == null) {
+        ArrayList<Nachricht> nachrichten = null;
+
+        nachrichten = apiHandler.getAllMessagesOfUser(user.getUserId());
+
+        /*if (user.getNachrichten() == null) {
             return null;
         }
-        return user.getNachrichten();
+        return user.getNachrichten();*/
+        if (nachrichten == null) {
+            return null;
+        }
+        System.out.println("Anzahl Nachrichten: " + nachrichten.size());
+        return nachrichten;
     }
 
     @Override
-    public int getRightUser(String username, String password) {
-        System.out.println("Get Right User");
+    public User getRightUser(String username, String password) {
+        User user = null;
+
+        user = apiHandler.getUserByNameAndPassword(username, password);
+
+        /*System.out.println("Get Right User");
         for (User user : users) {
             if (user.getBenutzerName().equals(username)) {
                 if (user.getPassword() == null && password == null) {
@@ -203,9 +221,9 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
                 }
             }
         }
-        System.out.println("Didnt get right user");
+        System.out.println("Didnt get right user");*/
 
-        return -1;
+        return user;
     }
 
     /**
@@ -216,8 +234,12 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
      */
     @Override
     public User getUser(String username) {
+
+        users = apiHandler.getAllUsers();
+
         for (User user : users) {
             if (user.getBenutzerName().equals(username)) {
+                System.out.println(user);
                 return user;
             }
         }
@@ -225,7 +247,7 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
     }
 
     /**
-     * Adds a message to a user and a other user.
+     * Adds a message to a user and another user.
      *
      * @param nachricht
      * @return
@@ -236,10 +258,20 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
             return false;
         } else {
             if (nachricht.getAbsender() == nachricht.getAnkommer()) {
-                nachricht.getAbsender().addNachricht(nachricht);
+
+                apiHandler.createNewMessage(nachricht);
+                nachricht.getAbsender().setNachrichten(apiHandler.getAllMessagesOfUser(nachricht.getAbsender().getBenutzerName()));
+
+                /*nachricht.getAbsender().addNachricht(nachricht);
                 List<Nachricht> oldNachrichtAbsender = nachricht.getAbsender().getNachrichten();
-                changes.firePropertyChange("nachrichten", oldNachrichtAbsender, nachricht.getAbsender().getNachrichten());
+                changes.firePropertyChange("nachrichten", oldNachrichtAbsender, nachricht.getAbsender().getNachrichten());*/
             } else {
+
+                apiHandler.createNewMessage(nachricht);
+                nachricht.getAbsender().setNachrichten(apiHandler.getAllMessagesOfUser(nachricht.getAbsender().getUserId()));
+                nachricht.getAnkommer().setNachrichten(apiHandler.getAllMessagesOfUser(nachricht.getAnkommer().getUserId()));
+
+/*
                 nachricht.getAbsender().addNachricht(nachricht);
                 nachricht.getAnkommer().addNachricht(nachricht);
 
@@ -248,6 +280,8 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
 
                 changes.firePropertyChange("nachrichten", oldNachrichtAbsender, nachricht.getAbsender().getNachrichten());
                 changes.firePropertyChange("nachrichten", oldNachrichtAnkommer, nachricht.getAnkommer().getNachrichten());
+                */
+
             }
         }
         return true;
@@ -262,14 +296,15 @@ public class VolatileModel extends Model implements NachrichtModel, UserModel {
      */
     @Override
     public ArrayList<Nachricht> getNachrichtenBetween(User me, User user) {
+        System.out.println("getNachrichtenBetween");
         ArrayList<Nachricht> alleNachrichten = (ArrayList<Nachricht>) getAllNachrichten(me);
         ArrayList<Nachricht> nachrichtenBetween = new ArrayList<>();
         if (alleNachrichten == null) {
             return null;
         }
         for (Nachricht nachricht : alleNachrichten) {
-            if (((nachricht.getAbsender().getUseruid().equals(me.getUseruid())) && (nachricht.getAnkommer().getUseruid().equals(user.getUseruid())))
-                    || ((nachricht.getAbsender().getUseruid().equals(user.getUseruid())) && (nachricht.getAnkommer().getUseruid().equals(me.getUseruid())))) {
+            if (((nachricht.getAbsender().getUserId().equals(me.getUserId())) && (nachricht.getAnkommer().getUserId().equals(user.getUserId())))
+                    || ((nachricht.getAbsender().getUserId().equals(user.getUserId())) && (nachricht.getAnkommer().getUserId().equals(me.getUserId())))) {
                 nachrichtenBetween.add(nachricht);
             }
         }

@@ -8,16 +8,17 @@ package ch.aelgict.easychatapp.viewModel;
 import ch.aelgict.easychatapp.entity.Nachricht;
 import ch.aelgict.easychatapp.entity.User;
 import ch.aelgict.easychatapp.model.NachrichtModel;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- *
  * @author da_so
  */
 public class UserListViewModel extends ViewModel implements PropertyChangeListener {
@@ -33,32 +34,57 @@ public class UserListViewModel extends ViewModel implements PropertyChangeListen
     public UserListViewModel(NachrichtModel model, User user) {
         this.model = model;
         this.userMe = user;
-        this.nachrichten.setAll(model.getAllNachrichten(user));
+        var ret = model.getAllNachrichten(user);
+        if (ret != null) {
+            this.nachrichten.setAll(ret);
+            System.out.println(this.nachrichten.size());
+        }
     }
 
     public ObservableList<User> getUserList() {
         getAllUsersFromNachrichten();
         this.users.removeAll();
-        this.users.setAll(removeDuplicatesFromUser());
+        removeDuplicatesFromUser();
         return users;
     }
 
-    private ArrayList<User> removeDuplicatesFromUser() {
+    private void removeDuplicatesFromUser() {
+        System.out.println("removeDuplicatesFromUser");
         ArrayList<User> newUserList = new ArrayList<>();
         for (User user : users) {
-            if (!newUserList.contains(user)) {
+            if (newUserList.isEmpty()) {
                 newUserList.add(user);
+            } else {
+                boolean add = true;
+                for (User value : newUserList) {
+                    if (user.getUserId().equals(value.getUserId())) {
+                        add = false;
+                        break;
+                    }
+                }
+                if (add) {
+                    newUserList.add(user);
+                }
             }
         }
-        return newUserList;
+        this.users.clear();
+        this.users.setAll(newUserList);
     }
 
     private void getAllUsersFromNachrichten() {
-        for (Nachricht nachricht : nachrichten) {
-            if (nachricht.getAbsender().getUseruid().equals(userMe.getUseruid())) {
-                users.add(nachricht.getAnkommer());
-            } else if (nachricht.getAnkommer().getUseruid().equals(userMe.getUseruid())) {
-                users.add(nachricht.getAbsender());
+        System.out.println("getAllUsersFromNachrichten");
+        for (Nachricht nachricht : this.nachrichten) {
+            System.out.println(nachricht.getMessage());
+            System.out.println(nachricht.getAbsender().getUserId());
+            System.out.println(nachricht.getAnkommer().getUserId());
+            if (nachricht.getAbsender().getUserId().equals(userMe.getUserId())) {
+                System.out.println("0");
+                System.out.println(nachricht.getAnkommer().getBenutzerName());
+                this.users.add(nachricht.getAnkommer());
+            } else if (nachricht.getAnkommer().getUserId().equals(userMe.getUserId())) {
+                System.out.println("1");
+                System.out.println(nachricht.getAbsender().getBenutzerName());
+                this.users.add(nachricht.getAbsender());
             }
         }
     }

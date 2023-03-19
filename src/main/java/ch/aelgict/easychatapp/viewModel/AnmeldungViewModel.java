@@ -11,7 +11,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- *
  * @author da_so
  */
 public class AnmeldungViewModel extends ViewModel {
@@ -52,14 +51,22 @@ public class AnmeldungViewModel extends ViewModel {
 
     public void proveUser() {
         System.out.println("Prove User");
-        int ret = model.proveUser(new User(password.getValue(), userName.getValue()));
+        User ret = model.proveUser(new User(password.getValue(), userName.getValue()));
+        if (ret == null) {
+            errorMessage.setValue("Benutzername oder Passwort ist Falsch!");
+            return;
+        }
+        errorMessage.setValue("");
+        mainApp.showUserList(ret);
+
+        /*
         switch (ret) {
             case 0:
                 System.out.println("Got User");
                 //User selectedUser = new User(password.getValue(), userName.getValue());
-                int index = model.getRightUser(userName.getValue(), password.getValue());
-                if (index != -1) {
-                    User user = model.getUserList().get(index);
+                User user = model.getRightUser(userName.getValue(), password.getValue());
+                if (user != null) {
+                    //User user = model.getUserList().get(index);
                     //mainApp.showNachrichtenverlauf(user);
                     mainApp.showUserList(user);
                     return;
@@ -75,7 +82,7 @@ public class AnmeldungViewModel extends ViewModel {
             default:
                 errorMessage.setValue("");
                 break;
-        }
+        }*/
     }
 
     public void chancelAction() {

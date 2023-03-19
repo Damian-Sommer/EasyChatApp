@@ -21,11 +21,11 @@ public interface UserModel {
 
     public abstract List<User> getUserList();
     
-    public abstract int getRightUser(String username, String password);
+    public abstract User getRightUser(String username, String password);
 
     public abstract boolean addUser(User user);
     
-    public abstract int proveUser(User user);
+    public abstract User proveUser(User user);
 
     public abstract int[] createNewUser(String username, String password, String passwordRepeat, String vorname, String nachname, String email);
         
